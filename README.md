@@ -23,7 +23,7 @@ python3 dynamic-template-generator.py -n lowercase -d
 ```
 
 ### Specify a file
-Specify the input and output template files. If no output file is specified, the template will be saved in the dynamic-template-generator\new_templates folder.
+Specify an input and output template file. If no output file is specified, the template will be saved in the dynamic-template-generator\new_templates folder.
 ```
 python3 dynamic-template-generator.py -f INPUT_FILEPATH -o OUTPUT_FILEPATH -n uppercase -d
 ```
