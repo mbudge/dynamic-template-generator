@@ -65,3 +65,5 @@ python3 dynamic-template-generator.py -d -n lowercase -c -r 60
   -r, --refresh         Set the refresh interval seconds.
 ```
 
+## Blog 
+[Dynamic Template Generator blog post on medium.com](https://matthewbudge.medium.com/dynamic-template-generator-for-elasticsearch-b2bc4eb26863)
