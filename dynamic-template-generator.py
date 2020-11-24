@@ -11,7 +11,6 @@ import json
 import argparse
 from pathlib import Path
 
-new_dynamic_template = []
 current_path = os.path.dirname(os.path.realpath(__file__))
 current_templates_path = os.path.join(current_path, "current_templates")
 new_templates_path = os.path.join(current_path, "new_templates")
@@ -36,7 +35,6 @@ def load_templates():
 # This is done through function recursion.
 def add_case_normalizer(mappings, case):
     try:
-
         for k, v in list(mappings.items()):
             if isinstance(k, str) and isinstance(v, str):
                 if k.lower().strip() == "type" and v.lower().strip() == "keyword":
@@ -136,9 +134,14 @@ def main(args):
 
             print("Processing: {0}".format(filepath))
 
+            # Make sure the new_dynamic_template global variable is empty when processing a new template.
+            global new_dynamic_template
+            new_dynamic_template = []
+
             filename = Path(filepath).name
-            # Output_path is used when args.output is set to .
-            output_path = os.path.dirname(filepath)
+            # input_template_path is used when args.output is set to .
+            # When args.output is set to . the new template is saved in the same folder as the input template.
+            input_template_path = os.path.dirname(filepath)
 
             try:
                 # Open file and read bytes
@@ -239,10 +242,10 @@ def main(args):
                     action = input("Overwrite input template: yes/no ").lower().strip()
                     if action == "yes":
                         # Write to the same directory and the input file.
-                        output_path = os.path.join(output_path, filename)
+                        output_path = os.path.join(input_template_path, filename)
                     else:
                         # Write to the same directory and the input file.
-                        output_path = os.path.join(output_path, "new-{0}".format(filename))
+                        output_path = os.path.join(input_template_path, "new-{0}".format(filename))
                 elif args.output:
                     # Write to the file path specified at the command line parameters.
                     output_path = args.output

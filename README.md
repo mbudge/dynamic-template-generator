@@ -15,6 +15,7 @@ Explicit mappings define each field in the index, even if no data exists. Explic
 Dynamic template generator requires python 3.4+
 
 ## Usage
+Run the script once to create the current_template and new_template folders.
 
 ### current_templates folder
 The following example shows how to load templates from the default dynamic-template-generator\current_templates folder. The new templates will be saved in the dynamic-template-generator\new_templates folder.
