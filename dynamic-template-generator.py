@@ -199,8 +199,9 @@ def main(args):
 
                     # Set the dynamic templates if they were generated successfully.
                     if len(new_dynamic_template) > 0:
-                        if args.prefix and "dynamic_templates" in mappings and isinstance(mappings["dynamic_templates"], list):
-                            mappings["dynamic_templates"].insert(0, new_dynamic_template)
+                        if args.prefix and "dynamic_templates" in mappings and isinstance(mappings["dynamic_templates"], list) and len(mappings["dynamic_templates"]) > 0:
+                            new_dynamic_template.extend(mappings["dynamic_templates"])
+                            mappings["dynamic_templates"] = new_dynamic_template
                         else:
                             mappings["dynamic_templates"] = new_dynamic_template
 
