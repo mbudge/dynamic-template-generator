@@ -54,6 +54,12 @@ Set simple settings like the refresh interval and the best-compression codec.
 python3 dynamic-template-generator.py -d -n lowercase -c -r 60
 ```
 
+### Add dynamic templates to the start of the existing dynamic templates list
+Use the -p or --prefix option to add the new dynamic templates to the start of the existing dynamic templates list. The existing dynamic templates are not deleted when this option is set. The new dynamic templates ae inserted to the front of the list so they take priority over existing dynamic templates. This is because dynamic templates define the field using the first match in the list. Default Beats templates defines a small number of wildcard dynamic templates which shouldn't be removed.
+```
+python3 dynamic-template-generator.py -r 60 -c -d -n lowercase -p 
+```
+
 ## Options
 ```
   -h, --help            show this help message and exit
@@ -61,6 +67,7 @@ python3 dynamic-template-generator.py -d -n lowercase -c -r 60
   -o, --output          Output template filepath. Defaults to all files in the new_templates folder.
   -n, --normaliser      Upper or lowercase normaliser. Set to uppercase or lowercase.
   -d, --dynamic         Convert mappings to dynamic templates.
+  -p, --prefix          Add the dynamic templates to the start of the existing dynamic template list.
   -c, --compression     Enable best compression.
   -r, --refresh         Set the refresh interval seconds.
 ```

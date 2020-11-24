@@ -199,7 +199,10 @@ def main(args):
 
                     # Set the dynamic templates if they were generated successfully.
                     if len(new_dynamic_template) > 0:
-                        mappings["dynamic_templates"] = new_dynamic_template
+                        if args.prefix:
+                            mappings["dynamic_templates"].insert(0, new_dynamic_template)
+                        else:
+                            mappings["dynamic_templates"] = new_dynamic_template
 
                         # Delete the explicit mappings as they will override the dynamic templates.
                         del mappings["properties"]
@@ -289,6 +292,7 @@ if __name__ == "__main__":
     parser.add_argument("-o", "--output", type=str, help="Output template filepath. Defaults to all files in the new_templates folder.")
     parser.add_argument("-n", "--normaliser", type=str, help="Upper or lowercase normaliser. Set to uppercase or lowercase.")
     parser.add_argument("-d", "--dynamic", help="Convert mappings to dynamic templates.", default=False, action="store_true")
+    parser.add_argument("-p", "--prefix", help="Add the dynamic templates to the start of the existing dynamic template list.", default=False, action="store_true")
     parser.add_argument("-c", "--compression", help="Enable best compression.", default=False, action="store_true")
     parser.add_argument("-r", "--refresh", help="Set the refresh interval seconds.", type=int)
     args = parser.parse_args()
